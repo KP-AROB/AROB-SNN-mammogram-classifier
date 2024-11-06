@@ -1,0 +1,16 @@
+task: 'INBREAST'
+data_dir: '/home/nvidia/datasets/inbreast-augmented/classification/'
+log_dir: './logs'
+time: 200
+intensity: 128
+n_classes: 2
+batch_size: 8
+seed: 1234
+n_neurons: 100
+input_size: 128
+reduction: 'max'
+theta_plus: .05
+training_epochs: 5
+dt: 1.0
+inh: 120
+name: inhibition_200_theta_.1

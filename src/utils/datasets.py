@@ -1,0 +1,3 @@
+from bindsnet.datasets.torchvision_wrapper import create_torchvision_dataset_wrapper
+
+CustomImageFolderDataset = create_torchvision_dataset_wrapper('ImageFolder')
