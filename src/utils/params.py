@@ -1,5 +1,21 @@
-import yaml, logging
+import yaml, logging, importlib
 
+
+def instanciate_encoder(module_name: str, class_name: str, params):
+    try:
+        module_ = importlib.import_module(module_name)
+        if not hasattr(module_, class_name):
+            raise AttributeError(f"Class '{class_name}' not found in module '{module_name}'")
+        
+        class_ = getattr(module_, class_name)
+        mod = class_(**params)
+        return mod
+    except ModuleNotFoundError:
+        raise ModuleNotFoundError(f"Module '{module_name}' not found")
+    except AttributeError as e:
+        raise e
+    except Exception as e:
+        raise Exception(f"An error occurred: {e}")
 
 def load_parameters(path):
     try:

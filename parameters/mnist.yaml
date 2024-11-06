@@ -1,16 +1,23 @@
-task: 'MNIST'
-data_dir: './data'
-log_dir: './logs'
-time: 100
-intensity: 128
-n_classes: 10
-batch_size: 128
-seed: 1234
-n_neurons: 100
-input_size: 28
-reduction: 'max'
-theta_plus: .1
-training_epochs: 1
-dt: 1.0
-inh: 200
-name: inhibition_200_theta_.1
+time: &time 250
+dt: &dt 1.0
+name: 
+training:
+  task: 'MNIST'
+  data_dir: './data'
+  log_dir: './logs'
+  intensity: 128
+  n_classes: 10
+  batch_size: 8
+  seed: 1234
+  n_neurons: 100
+  input_size: 28
+  reduction: 'max'
+  theta_plus: .05
+  epochs: 1
+  inh: 120
+encoder: 
+  module_name: bindsnet.encoding
+  class_name: PoissonEncoder
+  params:
+    time: *time
+    dt: *dt

@@ -9,9 +9,8 @@ from torch.utils.data import random_split
 def load_image_folder_dataloader(
         root,
         image_size, 
+        image_encoder,
         batch_size: int = 16, 
-        time : int = 100, 
-        dt : float = 1.0, 
         intensity : int = 128, 
         gpu : bool = True
     ):
@@ -39,7 +38,7 @@ def load_image_folder_dataloader(
     n_workers = gpu * 4 * torch.cuda.device_count()
     
     dataset = CustomImageFolderDataset(
-        PoissonEncoder(time=time, dt=dt),
+        image_encoder,
         None,
         root=root,
         transform=transforms.Compose(
@@ -80,9 +79,8 @@ def load_image_folder_dataloader(
 def load_mnist_dataloader(
         data_dir: str,
         image_size, 
+        encoder,
         batch_size: int = 16, 
-        time : int = 100, 
-        dt : float = 1.0, 
         intensity : int = 128, 
         gpu : bool = True):
 
@@ -109,7 +107,7 @@ def load_mnist_dataloader(
     n_workers = gpu * 4 * torch.cuda.device_count()
 
     train_dataset = MNIST(
-        PoissonEncoder(time=time, dt=dt),
+        encoder,
         None,
         root=os.path.join(data_dir, "MNIST"),
         download=True,
@@ -123,7 +121,7 @@ def load_mnist_dataloader(
         ),
     )
     test_dataset = MNIST(
-        PoissonEncoder(time=time, dt=dt),
+        encoder,
         None,
         root=os.path.join(data_dir, "MNIST"),
         download=True,
