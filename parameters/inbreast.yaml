@@ -1,6 +1,6 @@
 time: &time 250
 dt: &dt 1.0
-name: 
+name: 'n400_inh_400'
 training:
   task: 'INBREAST'
   data_dir: '/home/nvidia/datasets/inbreast-augmented/classification/'
@@ -9,12 +9,12 @@ training:
   n_classes: 2
   batch_size: 8
   seed: 1234
-  n_neurons: 100
+  n_neurons: 400
   input_size: 128
   reduction: 'max'
   theta_plus: .05
   epochs: 1
-  inh: 120
+  inh: 400
 encoder: 
   module_name: bindsnet.encoding
   class_name: PoissonEncoder

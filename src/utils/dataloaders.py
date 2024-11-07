@@ -5,11 +5,10 @@ from torchvision import transforms
 from src.utils.datasets import CustomImageFolderDataset
 from torch.utils.data import random_split
 
-# TODO: Set encoder as variable
 def load_image_folder_dataloader(
-        root,
+        data_dir,
         image_size, 
-        image_encoder,
+        encoder,
         batch_size: int = 16, 
         intensity : int = 128, 
         gpu : bool = True
@@ -38,9 +37,9 @@ def load_image_folder_dataloader(
     n_workers = gpu * 4 * torch.cuda.device_count()
     
     dataset = CustomImageFolderDataset(
-        image_encoder,
+        encoder,
         None,
-        root=root,
+        root=data_dir,
         transform=transforms.Compose(
             [
                 transforms.Grayscale(),
